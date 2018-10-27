@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Experiments & Causaility</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body>
+		<!-- One -->
+			<section id="one" class="wrapper style2">
+				<div class="inner">
+					<div class="grid-style">
+
+						<div style="width:100%">
+							<div class="box box1" style="display:none;">
+								<div class="image fit">
+									<img src="images/pic02.jpg" alt="" />
+								</div>
+								<div class="content">
+									<header class="align-center">
+										<p>We are going to run an experiment on you, MUHAHAHA!</p>
+										<h2>Enter your code to continue</h2>
+									</header>
+									<center>
+										<div class="3u 6u$(xsmall)">
+											<input type="text" name="name" id="name" value="" placeholder="Enter 4 digit code" />
+										</div>
+									</center>
+									<br>
+									<footer class="align-center">
+										<a href="#" class="next button special">Next</a>
+									</footer>
+								</div>
+							</div>
+
+							<div class="box box2" style="display:none;">
+								<div class="content">
+									<header class="align-center">
+										<p>Answer all Questions</p>
+										<h2>Tell us some details about you</h2>
+									</header>
+									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+
+									<h3>Question 1</h3>
+									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+
+									<h3>Question 2</h3>
+									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+
+									<h3>Question 3</h3>
+									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+
+									<h3>Question 4</h3>
+									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+
+									<br>
+									<footer class="align-center">
+										<a href="#" class="next button special">Next</a>
+									</footer>
+								</div>
+							</div>
+
+							<div class="box box3" style="display:none;">
+								<div class="image fit">
+									<img src="images/cnn.png" alt="" />
+								</div>
+								<div class="content">
+									<header class="align-center">
+										<p>No cheating, watch all the way to the end</p>
+										<h2>Watch this video</h2>
+									</header>
+									<br>
+									<footer class="align-center">
+										<a href="#" class=" next button special">Next</a>
+									</footer>
+								</div>
+							</div>
+
+							<div class="box box4" style="display:none;">
+								<div class="content">
+									<header class="align-center">
+										<p>Answer all Questions</p>
+										<h2>What do you think of the Video</h2>
+									</header>
+									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+
+									<h3>Question 1</h3>
+									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+
+									<h3>Question 2</h3>
+									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+
+									<h3>Question 3</h3>
+									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+
+									<h3>Question 4</h3>
+									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+
+									<br>
+									<footer class="align-center">
+										<a href="#" class="next button special">Finish</a>
+									</footer>
+								</div>
+							</div>
+
+
+						</div>
+
+					</div>
+				</div>
+			</section>
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="container">
+
+				</div>
+				<div class="copyright">
+					&copy;. All rights reserved.
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script>
+				n = 2
+				$('.box1').css('display', 'block');
+				$('.next').click(function() {
+					if (n == 5) n = 1
+					$('.box').css('display', 'none');
+					$('.box' + n).css('display', 'block');
+					n = n + 1
+				});
+			</script>
+
+	</body>
+</html>
