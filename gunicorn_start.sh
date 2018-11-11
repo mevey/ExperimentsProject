@@ -1,7 +1,7 @@
 #!/bin/bash
 
 NAME="app"                              #Name of the application (*)
-DJANGODIR=/opt/finalproject/app             # Django project directory (*)
+DJANGODIR=/opt/finalproject             # Django project directory (*)
 SOCKFILE=/opt/finalproject/run/gunicorn.sock        # we will communicate using this unix socket (*)
 USER=ubuntu                                        # the user to run as (*)
 GROUP=webdata                                     # the group to run as (*)
