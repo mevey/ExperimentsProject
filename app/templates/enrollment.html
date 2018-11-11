@@ -15,41 +15,41 @@
     <div class="container">
 
       <!-- Page Heading -->
-      <h1 class="my-4">Let's start some information about yourself<br>
-        <small>All the information you give us will be kept confidential</small></h1>
+      <h1 class="my-4 text-center">Let's start some information about yourself</h1>
+      <p class="text-center">All the information you give us will be kept confidential</p>
 
       <hr>
       <!-- Project One -->
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="/enroll/" >
-              {% csrf_token %}
+            <form method="post" action="/enroll/" >
+                {% csrf_token %}
 
-              {% if error %}
-              <div class="alert alert-warning" role="alert">
+                {% if error %}
+                <div class="alert alert-warning" role="alert">
                 {{error}}
               </div>
               {% endif %}
 
               <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="{{email}}">
+                <label for="email">Your Email Address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="{{email}}" style="width:80%;">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
               <div class="form-group">
-                <label for="gender">Gender</label>
-                <select  class="form-control" id="gender" name="gender">
+                <label for="gender">Your Gender</label>
+                <select  class="form-control" id="gender" name="gender" style="width:40%;">
                     <option>Female</option>
                     <option>Male</option>
                 </select>
               </div>
                <div class="form-group">
-                <label for="age" id="age">Age</label>
-                <input type="number" class="form-control" placeholder="Enter your age" name="age" value="{{age}}"/>
+                <label for="age" id="age">Your Age</label>
+                <input type="number" class="form-control" placeholder="Enter your age" name="age" value="{{age}}" style="width:30%;"/>
               </div>
               <div class="form-group">
-                <label for="location">What is your location</label>
-                <select  class="form-control" id="location" name="location">
+                <label for="location">Your Location</label>
+                <select  class="form-control" id="location" name="location" style="width:50%">
                     <option>United States</option>
                     <option>Kenya</option>
                     <option>India</option>

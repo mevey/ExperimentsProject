@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from app.models import *
 from datetime import datetime
+import random
 
 QUESTIONS = [
     "Interested",
@@ -43,10 +44,9 @@ def enrollment(request):
         context['age'] = age
         context['gender'] = gender
         context['location'] = location
-        print(context)
-        print("-"* 30)
+
         if not email or not age or not gender or not location:
-            context['err'] = "Please answer all the questions"
+            context['error'] = "Please answer all the questions"
             return render(request, 'enrollment.html', context)
         else:
             r = Respondent.objects.filter(email = email)
@@ -96,14 +96,16 @@ def pretreatment(request):
 
 def treatment(request):
     context = {}
+    group = request.session.get("group")
     return render(request, 'treat.html', context)
+
 def control(request):
     context = {}
+    group = request.session.get("group")
     return render(request, 'control.html', context)
 
 def final(request):
-    context = {}
-    return render(request, 'final.html', context)
+    return render(request, 'final.html')
 
 def posttreatment(request):
     context = {"questions": QUESTIONS}
@@ -123,4 +125,7 @@ def posttreatment(request):
         return render(request, 'post.html', context)
 
 def randomize(age, gender, location):
-    return "ROXO"
+    groups = ["ROXO", "RXO", "ROO", "RO"]
+    i = random.randint(0,4)
+    print(i)
+    return groups[i]

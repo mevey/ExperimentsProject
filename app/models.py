@@ -16,6 +16,9 @@ class Respondent(models.Model):
     enrollment_date = models.DateTimeField()
     last_update = models.DateTimeField(auto_now_add=True, blank=True)
 
+    def __str__(self):
+        return self.email + " (" + self.group + ")"
+
 
 class Panas(models.Model):
     respondent = models.ForeignKey(Respondent, on_delete=models.CASCADE)
