@@ -126,6 +126,6 @@ def posttreatment(request):
 
 def randomize(age, gender, location):
     groups = ["ROXO", "RXO", "ROO", "RO"]
-    i = random.randint(0,4)
+    i = random.randint(0,3)
     print(i)
     return groups[i]
