@@ -10,4 +10,5 @@ urlpatterns = [
     path('treat/', views.treatment),
     path('control/', views.control),
     path('post/', views.posttreatment),
+    path('final/', views.final),
 ]

@@ -11,3 +11,59 @@ body {
 .pagination {
   margin-bottom: 15px;
 }
+
+label.btn {
+    /**margin:20px 10px;**/
+    border-radius: 25px;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+.label-input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.radio-buttons {
+  display: block;
+}
+
+.radio-buttons input[type="radio"] {
+  display: none;
+}
+.radio-buttons label.radio-button {
+  background-color: #fff;
+  border: 1px solid #00adef;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+}
+
+.radio-buttons span {
+  background: #fff;
+  color: #00adef;
+  cursor: pointer;
+  display: block;
+  padding: 15px;
+  width: 100%;
+}
+.radio-buttons span:hover {
+  background-color: #00adef;
+  color: #fff;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.radio-buttons input:checked + span {
+  background-color: #00adef;
+  color: #fff;
+}

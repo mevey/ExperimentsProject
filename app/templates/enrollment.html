@@ -15,29 +15,37 @@
     <div class="container">
 
       <!-- Page Heading -->
-      <h1 class="my-4">Let's start some information about yourself</h1>
-        <h1><small>All the information you give us will be kept confidential</small></h1>
+      <h1 class="my-4">Let's start some information about yourself<br>
+        <small>All the information you give us will be kept confidential</small></h1>
 
       <hr>
       <!-- Project One -->
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="/enrollment">
+          <form method="post" action="/enroll/" >
+              {% csrf_token %}
+
+              {% if error %}
+              <div class="alert alert-warning" role="alert">
+                {{error}}
+              </div>
+              {% endif %}
+
               <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="{{email}}">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
               <div class="form-group">
                 <label for="gender">Gender</label>
-                <select  class="form-control" id="gender">
+                <select  class="form-control" id="gender" name="gender">
                     <option>Female</option>
                     <option>Male</option>
                 </select>
               </div>
                <div class="form-group">
                 <label for="age" id="age">Age</label>
-                <input type="number" class="form-control" placeholder="Enter your age" name="age"/>
+                <input type="number" class="form-control" placeholder="Enter your age" name="age" value="{{age}}"/>
               </div>
               <div class="form-group">
                 <label for="location">What is your location</label>
@@ -47,7 +55,7 @@
                     <option>India</option>
                 </select>
               </div>
-              <button type="submit" class="btn btn-primary">Next</button>
+              <button type="submit" class="btn btn-primary" style="width:200px;">Next</button>
             </form>
         </div>
       </div>

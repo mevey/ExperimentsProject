@@ -20,4 +20,5 @@ class Respondent(models.Model):
 class Panas(models.Model):
     respondent = models.ForeignKey(Respondent, on_delete=models.CASCADE)
     pre_post = models.CharField(max_length=200)
-    answer = models.CharField(max_length=200)
+    question = models.CharField(max_length=200, default=None)
+    answer = models.CharField(max_length=200, default=None)
