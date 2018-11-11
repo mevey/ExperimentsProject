@@ -1,0 +1,10 @@
+[Unit]
+Description=finalproject gunicorn daemon
+
+[Service]
+Type=simple
+User=ubuntu
+ExecStart=/opt/finalproject/gunicorn_start.sh
+
+[Install]
+WantedBy=multi-user.target
