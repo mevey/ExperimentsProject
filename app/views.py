@@ -73,6 +73,7 @@ def enrollment(request):
         return render(request, 'enrollment.html', context)
 
 def pretreatment(request):
+    random.shuffle(QUESTIONS)
     context = {"questions": QUESTIONS}
     if request.method == "POST":
         for key in request.POST:
@@ -111,6 +112,7 @@ def posenet(request):
     return render(request, 'posenet.html')
 
 def posttreatment(request):
+    random.shuffle(QUESTIONS)
     context = {"questions": QUESTIONS}
     if request.method == "POST":
         for key in request.POST:
