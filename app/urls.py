@@ -11,4 +11,5 @@ urlpatterns = [
     path('control/', views.control),
     path('post/', views.posttreatment),
     path('final/', views.final),
+    path('posenet/', views.posenet),
 ]

@@ -107,6 +107,9 @@ def control(request):
 def final(request):
     return render(request, 'final.html')
 
+def posenet(request):
+    return render(request, 'posenet.html')
+
 def posttreatment(request):
     context = {"questions": QUESTIONS}
     if request.method == "POST":
