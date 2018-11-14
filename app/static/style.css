@@ -37,7 +37,7 @@ html {
 .radio-buttons input[type="radio"] {
   display: none;
 }
-.radio-buttons label.radio-button {
+.blue .radio-buttons label.radio-button {
   background-color: #fff;
   border: 1px solid #00adef;
   border-radius: 3px;
@@ -48,7 +48,7 @@ html {
   text-align: center;
 }
 
-.post .radio-buttons label.radio-button {
+.purple .radio-buttons label.radio-button {
   background-color: #fff;
   border: 1px solid #800080;
   border-radius: 3px;
@@ -59,7 +59,7 @@ html {
   text-align: center;
 }
 
-.radio-buttons span {
+.blue .radio-buttons span {
   background: #fff;
   color: #00adef;
   cursor: pointer;
@@ -67,19 +67,19 @@ html {
   padding: 15px;
   width: 100%;
 }
-.radio-buttons span:hover {
+.blue .radio-buttons span:hover {
   background-color: #00adef;
   color: #fff;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-.radio-buttons input:checked + span {
+.blue .radio-buttons input:checked + span {
   background-color: #00adef;
   color: #fff;
 }
 
-.post .radio-buttons span {
+.purple .radio-buttons span {
   background: #fff;
   color: #800080;
   cursor: pointer;
@@ -87,14 +87,15 @@ html {
   padding: 15px;
   width: 100%;
 }
-.post .radio-buttons span:hover {
+.purple .radio-buttons span:hover {
   background-color: #800080;
   color: #fff;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-.post .radio-buttons input:checked + span {
+.purple .radio-buttons input:checked + span {
   background-color: #800080;
   color: #fff;
 }
+

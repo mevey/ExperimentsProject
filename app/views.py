@@ -27,6 +27,8 @@ QUESTIONS = [
     "Afraid"
 ]
 
+COLORS = ["blue", "purple"]
+
 # Create your views here.
 def index(request):
     #Privacy page
@@ -62,6 +64,9 @@ def enrollment(request):
                 r.save()
                 request.session['respondent'] = r.id
                 request.session['group'] = results
+                pre_color, post_color = randomize_color()
+                request.session['pre_color'] = pre_color
+                request.session['post_color'] = post_color
 
                 if results == "ROXO" or results == "ROO":
                     return redirect('/pre/')
@@ -74,7 +79,8 @@ def enrollment(request):
 
 def pretreatment(request):
     random.shuffle(QUESTIONS)
-    context = {"questions": QUESTIONS}
+    color = request.session.get("pre_color", "blue")
+    context = {"questions": QUESTIONS, "color": color}
     if request.method == "POST":
         for key in request.POST:
             respondent_id = request.session.get("respondent")
@@ -129,7 +135,8 @@ def final(request):
 
 def posttreatment(request):
     random.shuffle(QUESTIONS)
-    context = {"questions": QUESTIONS}
+    color = request.session.get("post_color", "purple")
+    context = {"questions": QUESTIONS, "color": color}
     if request.method == "POST":
         try:
             respondent = request.session.get("respondent")
@@ -157,15 +164,21 @@ def posttreatment(request):
 def randomize(age, gender, location):
     groups = ["ROXO", "RXO", "ROO", "RO"]
     i = random.randint(0,3)
-    print(i)
     return groups[i]
+
+def randomize_color():
+    groups = COLORS
+    i = random.randint(0,1)
+    return (groups[i], groups[1 if groups[i] == 0 else 0] )
+
 
 
 def download(request):
     positive_affect =  [x-1 for x in [1, 3, 5, 9, 10, 12, 14, 16, 17, 19]]
 
     header = ["respondent_id", "age", "gender", "location", "group", "enrolled", "last_update", "level", "time_spent_in_treatment_or_control", "pre_positive_affect", "pre_negative_affect", "post_positive_affect", "post_negative_affect"]
-
+    for question in QUESTIONS:
+        header.extend["pre_" + question.lower(), "post_" + question.lower()]
 
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="experiments_data.csv"'
@@ -181,14 +194,9 @@ def download(request):
             t = 0
         row = [respondent.id, respondent.age, respondent.gender, respondent.location, respondent.group, respondent.enrollment_date, respondent.last_update, respondent.level, t]
         panas_results = Panas.objects.filter(respondent = respondent)
-        pre_neg_sum = 0
-        pre_pos_sum = 0
-        post_neg_sum = 0
-        post_pos_sum = 0
+        pre_neg_sum, pre_pos_sum, post_neg_sum, post_pos_sum = 0, 0, 0, 0
         for p in panas_results:
             i = QUESTIONS.index(str(p.question))
-            print(i)
-            print(p.answer)
             if p.pre_post == "pre":
                 if i in positive_affect: pre_pos_sum += int(p.answer)
                 else: pre_neg_sum += int(p.answer)

@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "mevey.co.ke",
     "info.mevey.co.ke",
+    "mproject.mevey.co.ke",
     "127.0.0.1"
 ]
 
@@ -124,6 +125,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static/'
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static")
+# ]
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
