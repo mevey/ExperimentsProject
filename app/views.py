@@ -85,6 +85,14 @@ def pretreatment(request):
     if request.method == "POST":
         for key in request.POST:
             respondent_id = request.session.get("respondent")
+            try:
+                r = Respondent.objects.get(id=respondent_id)
+                r.last_update = datetime.now()
+                r.level = 2
+                r.save()
+            except:
+                return redirect('/enroll/')
+
             answer = request.POST[key][0]
             if key in QUESTIONS:
                 p = Panas.objects.filter(respondent_id = respondent_id, pre_post="pre", question=key)
@@ -105,21 +113,27 @@ def pretreatment(request):
 def treatment(request):
     context = {}
     respondent = request.session.get("respondent")
-    r = Respondent.objects.get(id = respondent)
-    r.last_update = datetime.now()
-    r.level = 3
-    r.time_in = datetime.now()
-    r.save()
+    try:
+        r = Respondent.objects.get(id = respondent)
+        r.last_update = datetime.now()
+        r.level = 3
+        r.time_in = datetime.now()
+        r.save()
+    except:
+        return redirect('/enroll/')
     return render(request, 'treat.html', context)
 
 def control(request):
     context = {}
     respondent = request.session.get("respondent")
-    r = Respondent.objects.get(id=respondent)
-    r.last_update = datetime.now()
-    r.level = 4
-    r.time_in = datetime.now()
-    r.save()
+    try:
+        r = Respondent.objects.get(id=respondent)
+        r.last_update = datetime.now()
+        r.level = 4
+        r.time_in = datetime.now()
+        r.save()
+    except:
+        return redirect('/enroll/')
     return render(request, 'control.html', context)
 
 def final(request):
@@ -131,7 +145,7 @@ def final(request):
         r.time_out = datetime.now()
         r.save()
     except:
-        pass
+        return redirect('/enroll/')
     return render(request, 'final.html')
 
 def posttreatment(request):
@@ -144,10 +158,10 @@ def posttreatment(request):
             respondent = request.session.get("respondent")
             r = Respondent.objects.get(id=respondent)
             r.last_update = datetime.now()
-            r.level = 6
+            r.level = 5
             r.save()
         except:
-            pass
+            return redirect('/enroll/')
 
         respondent_id = request.session.get("respondent")
         for key in request.POST:
