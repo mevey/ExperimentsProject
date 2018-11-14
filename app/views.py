@@ -78,9 +78,10 @@ def enrollment(request):
         return render(request, 'enrollment.html', context)
 
 def pretreatment(request):
-    random.shuffle(QUESTIONS)
+    SHUFFLED_QUESTIONS = QUESTIONS
+    random.shuffle(SHUFFLED_QUESTIONS)
     color = request.session.get("pre_color", "blue")
-    context = {"questions": QUESTIONS, "color": color}
+    context = {"questions": SHUFFLED_QUESTIONS, "color": color}
     if request.method == "POST":
         for key in request.POST:
             respondent_id = request.session.get("respondent")
@@ -134,9 +135,10 @@ def final(request):
     return render(request, 'final.html')
 
 def posttreatment(request):
-    random.shuffle(QUESTIONS)
+    SHUFFLED_QUESTIONS = QUESTIONS
+    random.shuffle(SHUFFLED_QUESTIONS)
     color = request.session.get("post_color", "purple")
-    context = {"questions": QUESTIONS, "color": color}
+    context = {"questions": SHUFFLED_QUESTIONS, "color": color}
     if request.method == "POST":
         try:
             respondent = request.session.get("respondent")
@@ -177,8 +179,10 @@ def download(request):
     positive_affect =  [x-1 for x in [1, 3, 5, 9, 10, 12, 14, 16, 17, 19]]
 
     header = ["respondent_id", "age", "gender", "location", "group", "enrolled", "last_update", "level", "time_spent_in_treatment_or_control", "pre_positive_affect", "pre_negative_affect", "post_positive_affect", "post_negative_affect"]
+    individual_questions = []
     for question in QUESTIONS:
-        header.extend["pre_" + question.lower(), "post_" + question.lower()]
+        individual_questions.extend(["pre_" + question.lower(), "post_" + question.lower()])
+    header.extend(individual_questions)
 
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="experiments_data.csv"'
@@ -195,15 +199,23 @@ def download(request):
         row = [respondent.id, respondent.age, respondent.gender, respondent.location, respondent.group, respondent.enrollment_date, respondent.last_update, respondent.level, t]
         panas_results = Panas.objects.filter(respondent = respondent)
         pre_neg_sum, pre_pos_sum, post_neg_sum, post_pos_sum = 0, 0, 0, 0
+        individual_answers = [0] * len(individual_questions)
         for p in panas_results:
             i = QUESTIONS.index(str(p.question))
             if p.pre_post == "pre":
+                j = individual_questions.index("pre_" + p.question.lower())
+                individual_answers[j] = int(p.answer)
+
                 if i in positive_affect: pre_pos_sum += int(p.answer)
                 else: pre_neg_sum += int(p.answer)
             else:
+                j = individual_questions.index("post_" + p.question.lower())
+                individual_answers[j] = int(p.answer)
+
                 if i in positive_affect: post_pos_sum += int(p.answer)
                 else: post_neg_sum += int(p.answer)
         row.extend([pre_pos_sum, pre_neg_sum, post_pos_sum, post_neg_sum])
+        row.extend(individual_answers)
         writer.writerow(row)
 
     return response
