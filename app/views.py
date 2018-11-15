@@ -70,9 +70,7 @@ def enrollment(request):
 
                 if results == "ROXO" or results == "ROO":
                     return redirect('/pre/')
-                elif results == "RXO" :
-                    return redirect('/treat/')
-                elif results == "RO":
+                else:
                     return redirect('/control/')
     else:
         return render(request, 'enrollment.html', context)
@@ -101,11 +99,7 @@ def pretreatment(request):
                     p[0].save()
                 else:
                     Panas.objects.create(respondent_id = respondent_id, pre_post="pre", question=key, answer=answer).save()
-        group = request.session.get("group")
-        if group == "ROXO" or group == "RXO":
-            return redirect('/treat/')
-        else:
-            return redirect('/control/')
+        return redirect('/control/')
     else:
         return render(request, 'pre.html', context)
 
@@ -134,6 +128,11 @@ def control(request):
         r.save()
     except:
         return redirect('/enroll/')
+    group = request.session.get("group")
+    if group == "ROXO" or group == "RXO":
+        context['next'] = "/treat/"
+    else:
+        context['next'] = "/post/"
     return render(request, 'control.html', context)
 
 def final(request):
