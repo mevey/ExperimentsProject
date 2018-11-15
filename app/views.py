@@ -29,49 +29,44 @@ QUESTIONS = [
 
 COLORS = ["blue", "purple"]
 
-# Create your views here.
+
 def index(request):
-    #Privacy page
-    context = {}
-    return render(request, 'index.html', context)
+    return render(request, 'index.html')
 
 def enrollment(request):
     context = {}
     if request.method == "POST":
-        email = request.POST.get("email", None)
         age = request.POST.get("age", None)
         gender = request.POST.get("gender", None)
         location = request.POST.get("location", None)
-        context['email'] = email
+        education = request.POST.get("education", None)
         context['age'] = age
         context['gender'] = gender
         context['location'] = location
+        context['education'] = location
 
-        if not email or not age or not gender or not location:
+        if not age or not gender or not location:
             context['error'] = "Please answer all the questions"
             return render(request, 'enrollment.html', context)
         else:
-            r = Respondent.objects.filter(email = email)
-            if False:
-                context['error'] = "You have already done this experiment"
-                return render(request, 'enrollment.html', context)
-            else:
-                results = randomize(age, gender, location)
-                r = Respondent.objects.create(email = email, gender =gender, age=age, location=location,
-                                              enrollment_date=datetime.now(), group=results,
-                                              level=1
-                                              )
-                r.save()
-                request.session['respondent'] = r.id
-                request.session['group'] = results
-                pre_color, post_color = randomize_color()
-                request.session['pre_color'] = pre_color
-                request.session['post_color'] = post_color
+            pre_color, post_color = randomize_color()
+            request.session['pre_color'] = pre_color
+            request.session['post_color'] = post_color
 
-                if results == "ROXO" or results == "ROO":
-                    return redirect('/pre/')
-                else:
-                    return redirect('/control/')
+            results = randomize(age, gender, location)
+            r = Respondent.objects.create(email = None, gender =gender, age=age, location=location, education=education,
+                                          enrollment_date=datetime.now(), last_update=datetime.now(), group=results,
+                                          level=1, post_color=post_color, pre_color=pre_color,
+                                          )
+            r.save()
+            request.session['respondent'] = r.id
+            request.session['group'] = results
+
+
+            if results == "ROXO" or results == "ROO":
+                return redirect('/pre/')
+            else:
+                return redirect('/control/')
     else:
         return render(request, 'enrollment.html', context)
 
@@ -151,7 +146,12 @@ def posttreatment(request):
     SHUFFLED_QUESTIONS = QUESTIONS
     random.shuffle(SHUFFLED_QUESTIONS)
     color = request.session.get("post_color", "purple")
+    group = request.session.get("group", "RO")
     context = {"questions": SHUFFLED_QUESTIONS, "color": color}
+    if group in ["ROXO", "RXO"]:
+        context['number'] = True
+    else:
+        context['number'] = False
     if request.method == "POST":
         try:
             respondent = request.session.get("respondent")
@@ -159,19 +159,24 @@ def posttreatment(request):
             r.last_update = datetime.now()
             r.level = 5
             r.save()
+
+            respondent_id = request.session.get("respondent")
+            for key in request.POST:
+                answer = request.POST[key][0]
+                if key == "number":
+                    r.number = int(answer)
+                    r.save()
+                if key in QUESTIONS:
+                    p = Panas.objects.filter(respondent_id=respondent_id, pre_post="post", question=key)
+                    if p:
+                        p[0].answer = answer
+                        p[0].save()
+                    else:
+                        Panas.objects.create(respondent_id=respondent_id, pre_post="post", question=key,
+                                             answer=answer).save()
         except:
             return redirect('/enroll/')
 
-        respondent_id = request.session.get("respondent")
-        for key in request.POST:
-            answer = request.POST[key][0]
-            if key in QUESTIONS:
-                p = Panas.objects.filter(respondent_id = respondent_id, pre_post="post", question=key)
-                if p:
-                    p[0].answer = answer
-                    p[0].save()
-                else:
-                    Panas.objects.create(respondent_id = respondent_id, pre_post="post", question=key, answer=answer).save()
         return redirect('/final/')
     else:
         return render(request, 'post.html', context)
@@ -182,10 +187,9 @@ def randomize(age, gender, location):
     return groups[i]
 
 def randomize_color():
-    groups = COLORS
     l = [0,1]
     random.shuffle(l)
-    return (groups[l[0]], groups[l[1]] )
+    return (COLORS[l[0]], COLORS[l[1]] )
 
 
 

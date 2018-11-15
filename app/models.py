@@ -6,12 +6,16 @@ from django.db import models
 
 
 class Respondent(models.Model):
-    email = models.CharField(max_length=200)
+    email = models.CharField(max_length=200, null=True)
     group = models.CharField(max_length=200)
     age = models.IntegerField(default=0)
-    location = models.CharField(max_length=200)
+    education = models.CharField(max_length=200, default=None)
+    location = models.CharField(max_length=200, default=None)
+    pre_color = models.CharField(max_length=200, default=None)
+    post_color = models.CharField(max_length=200, default=None)
     country = models.CharField(max_length=200)
     gender = models.CharField(max_length=200)
+    number = models.IntegerField(default=0)
     level = models.IntegerField(default=0)
     enrollment_date = models.DateTimeField()
     time_in = models.DateTimeField(null=True)

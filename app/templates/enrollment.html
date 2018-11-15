@@ -31,28 +31,42 @@
               </div>
               {% endif %}
 
+              <!--<div class="form-group">-->
+                <!--<label for="email">Your Email Address</label>-->
+                <!--<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="{{email}}" style="width:80%;">-->
+                <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+              <!--</div>-->
               <div class="form-group">
-                <label for="email">Your Email Address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="{{email}}" style="width:80%;">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-              </div>
-              <div class="form-group">
-                <label for="gender">Your Gender</label>
+                <label for="gender">Your gender</label>
                 <select  class="form-control" id="gender" name="gender" style="width:40%;">
-                    <option>Female</option>
-                    <option>Male</option>
+                    <option value="">Choose your gender</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
                 </select>
               </div>
                <div class="form-group">
-                <label for="age" id="age">Your Age</label>
+                <label for="age" id="age">Your age</label>
                 <input type="number" class="form-control" placeholder="Enter your age" name="age" value="{{age}}" style="width:30%;"/>
               </div>
               <div class="form-group">
-                <label for="location">Your Location</label>
+                <label for="gender">Your higest level of education</label>
+                <select  class="form-control" id="education" name="education" style="width:40%;">
+                    <option value="">Choose your level of education</option>
+                    <option value="1">Less than high school</option>
+                    <option value="2">High school diploma or equivalent</option>
+                    <option value="3">Post Coll</option>
+                    <option value="4">Associate degree</option>
+                    <option value="5">Bachelor's degree</option>
+                    <option value="6">Masters's, doctoral or professional degree</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="location">Your location</label>
                 <select  class="form-control" id="location" name="location" style="width:50%">
-                    <option>United States</option>
-                    <option>Kenya</option>
-                    <option>India</option>
+                    <option value="">Choose your location</option>
+                    <option value="United States">United States</option>
+                    <option value="Kenya">Kenya</option>
+                    <option value="India">India</option>
                 </select>
               </div>
               <button type="submit" class="btn btn-primary" style="width:200px;">Next</button>

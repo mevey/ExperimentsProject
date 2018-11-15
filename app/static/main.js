@@ -36,7 +36,7 @@ if (!Array.prototype.includes) {
 var Sudoku = (function() {
 	var board;
 	var difficulties = {
-		easy: .90,
+		easy: .98,
 		medium: .5,
 		hard: .33
 	}
