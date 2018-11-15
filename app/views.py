@@ -183,8 +183,9 @@ def randomize(age, gender, location):
 
 def randomize_color():
     groups = COLORS
-    i = random.randint(0,1)
-    return (groups[i], groups[1 if groups[i] == 0 else 0] )
+    l = [0,1]
+    random.shuffle(l)
+    return (groups[l[0]], groups[l[1]] )
 
 
 
