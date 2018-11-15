@@ -10,6 +10,7 @@ urlpatterns = [
     path('enroll/', views.enrollment),
     path('pre/', views.pretreatment),
     path('treat/', views.treatment),
+    path('number-check/', views.number_check),
     path('control/', views.control),
     path('post/', views.posttreatment),
     path('final/', views.final),

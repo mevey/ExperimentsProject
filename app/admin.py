@@ -6,7 +6,7 @@ from django.contrib import admin
 from .models import *
 
 class RespondentAdmin(admin.ModelAdmin):
-    list_display = ('email', 'group', 'age', 'location', 'country', 'gender', 'level', 'enrollment_date', 'last_update', "time_in", "time_out")
+    list_display = ('group', 'education', 'age', 'location', 'gender', 'level', 'pre_color', 'post_color', 'number','enrollment_date', 'last_update', "time_in", "time_out")
 
 class PanasAdmin(admin.ModelAdmin):
     list_display = ('respondent','pre_post', 'question', 'answer')

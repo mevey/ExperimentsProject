@@ -35,33 +35,72 @@
 
             <form method="post" action="/pre/" id="form">
                 {% csrf_token %}
-                {% for question in questions %}
-                <div class="row question">
-                  <div class="col-md-4">
-                    <p>{{question}}</p>
-                  </div>
-                  <div class="col-md-8">
-                    <div class="field radio-buttons">
-                        <label class="radio-button">
-                          <input type="radio" value="1" name="{{question}}" ><span>Very Slightly or Not at All</span>
-                        </label>
-                        <label class="radio-button">
-                          <input type="radio" value="2" name="{{question}}" ><span>A little</span>
-                        </label>
-                        <label class="radio-button">
-                          <input type="radio" value="3" name="{{question}}" ><span>Moderately</span>
-                        </label>
-                           <label class="radio-button">
-                          <input type="radio" value="4" name="{{question}}" ><span>Quite a bit</span>
-                        </label>
-                           <label class="radio-button">
-                          <input type="radio"  value="5" name="{{question}}" ><span>Extremely</span>
-                        </label>
+
+                 {% if error %}
+                    {% for question in data %}
+                    <div class="row question">
+                      <div class="col-md-4">
+                        <p>{{question.question}}</p>
                       </div>
+                      <div class="col-md-8">
+                        <div class="field radio-buttons">
+                            <label class="radio-button">
+                              <input type="radio" value="1" {% if '1' in question.answer %} checked {% endif%} name="{{question.question}}" ><span>Very Slightly or Not at All</span>
+                            </label>
+                            <label class="radio-button">
+                              <input type="radio" value="2" {% if '2' in question.answer %} checked {% endif%} name="{{question.question}}" ><span>A little</span>
+                            </label>
+                            <label class="radio-button">
+                              <input type="radio" value="3" {% if '3' in question.answer %} checked {% endif%} name="{{question.question}}" ><span>Moderately</span>
+                            </label>
+                               <label class="radio-button">
+                              <input type="radio" value="4" {% if '4' in question.answer %} checked {% endif%} name="{{question.question}}" ><span>Quite a bit</span>
+                            </label>
+                               <label class="radio-button">
+                              <input type="radio"  value="5" {% if '5' in question.answer %} checked {% endif%} name="{{question.question}}" ><span>Extremely</span>
+                            </label>
+                          </div>
+                      </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+
+                {% else %}
+
+                    {% for question in questions %}
+                    <div class="row question">
+                      <div class="col-md-4">
+                        <p>{{question}}</p>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="field radio-buttons">
+                            <label class="radio-button">
+                              <input type="radio" value="1" name="{{question}}" ><span>Very Slightly or Not at All</span>
+                            </label>
+                            <label class="radio-button">
+                              <input type="radio" value="2" name="{{question}}" ><span>A little</span>
+                            </label>
+                            <label class="radio-button">
+                              <input type="radio" value="3" name="{{question}}" ><span>Moderately</span>
+                            </label>
+                               <label class="radio-button">
+                              <input type="radio" value="4" name="{{question}}" ><span>Quite a bit</span>
+                            </label>
+                               <label class="radio-button">
+                              <input type="radio"  value="5" name="{{question}}" ><span>Extremely</span>
+                            </label>
+                          </div>
+                      </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                {% endif %}
+
+                {% if error %}
+                  <div class="alert alert-warning" role="alert">
+                    {{error}}
                   </div>
-                </div>
-                <hr>
-                {% endfor %}
+              {% endif %}
                 <button class="btn btn-primary" type="submit" style="width:200px;">SUBMIT</button>
              </form>
           <br>

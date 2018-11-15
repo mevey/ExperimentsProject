@@ -33,40 +33,72 @@
 
             <form method="post" action="/post/" id="form">
                 {% csrf_token %}
-                {% if True %}
-                <div class="form-group" style="border:1px solid #000;padding:10px;">
-                    <label for="number" id="number"><b><h5>What number did you hear at the end of the recording?  <i>*</i></h5></b></label>
-                <input type="number" class="form-control" placeholder="Enter the number" name="number" style="width:20%;margin:0 auto;"/>
-              </div>
-                <hr>
-                {% endif %}
-                {% for question in questions %}
-                <div class="row question">
-                  <div class="col-md-4">
-                    <p>{{question}}</p>
-                  </div>
-                  <div class="col-md-8">
-                    <div class="field radio-buttons">
-                        <label class="radio-button">
-                          <input type="radio" value="1" name="{{question}}" ><span>Very Slightly or Not at All</span>
-                        </label>
-                        <label class="radio-button">
-                          <input type="radio" value="2" name="{{question}}" ><span>A little</span>
-                        </label>
-                        <label class="radio-button">
-                          <input type="radio" value="3" name="{{question}}" ><span>Moderately</span>
-                        </label>
-                           <label class="radio-button">
-                          <input type="radio" value="4" name="{{question}}" ><span>Quite a bit</span>
-                        </label>
-                           <label class="radio-button">
-                          <input type="radio"  value="5" name="{{question}}" ><span>Extremely</span>
-                        </label>
+
+                {% if error %}
+                    {% for question in data %}
+                    <div class="row question">
+                      <div class="col-md-4">
+                        <p>{{question.question}}</p>
                       </div>
+                      <div class="col-md-8">
+                        <div class="field radio-buttons">
+                            <label class="radio-button">
+                              <input type="radio" value="1" {% if '1' in question.answer %} checked {% endif%} name="{{question.question}}" ><span>Very Slightly or Not at All</span>
+                            </label>
+                            <label class="radio-button">
+                              <input type="radio" value="2" {% if '2' in question.answer %} checked {% endif%} name="{{question.question}}" ><span>A little</span>
+                            </label>
+                            <label class="radio-button">
+                              <input type="radio" value="3" {% if '3' in question.answer %} checked {% endif%} name="{{question.question}}" ><span>Moderately</span>
+                            </label>
+                               <label class="radio-button">
+                              <input type="radio" value="4" {% if '4' in question.answer %} checked {% endif%} name="{{question.question}}" ><span>Quite a bit</span>
+                            </label>
+                               <label class="radio-button">
+                              <input type="radio"  value="5" {% if '5' in question.answer %} checked {% endif%} name="{{question.question}}" ><span>Extremely</span>
+                            </label>
+                          </div>
+                      </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+
+                {% else %}
+
+                    {% for question in questions %}
+                    <div class="row question">
+                      <div class="col-md-4">
+                        <p>{{question}}</p>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="field radio-buttons">
+                            <label class="radio-button">
+                              <input type="radio" value="1" name="{{question}}" ><span>Very Slightly or Not at All</span>
+                            </label>
+                            <label class="radio-button">
+                              <input type="radio" value="2" name="{{question}}" ><span>A little</span>
+                            </label>
+                            <label class="radio-button">
+                              <input type="radio" value="3" name="{{question}}" ><span>Moderately</span>
+                            </label>
+                               <label class="radio-button">
+                              <input type="radio" value="4" name="{{question}}" ><span>Quite a bit</span>
+                            </label>
+                               <label class="radio-button">
+                              <input type="radio"  value="5" name="{{question}}" ><span>Extremely</span>
+                            </label>
+                          </div>
+                      </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                {% endif %}
+
+                {% if error %}
+                  <div class="alert alert-warning" role="alert">
+                    {{error}}
                   </div>
-                </div>
-                <hr>
-                {% endfor %}
+              {% endif %}
                 <button class="btn btn-primary" type="submit" style="width:200px;">SUBMIT</button>
              </form>
           <br>

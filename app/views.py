@@ -70,22 +70,41 @@ def enrollment(request):
     else:
         return render(request, 'enrollment.html', context)
 
+def randomize(age, gender, location):
+    groups = ["ROXO", "RXO", "ROO", "RO"]
+    i = random.randint(0,3)
+    return groups[i]
+
+def randomize_color():
+    l = [0,1]
+    random.shuffle(l)
+    return (COLORS[l[0]], COLORS[l[1]] )
+
 def pretreatment(request):
+    respondent_id = request.session.get("respondent")
+    try:
+        r = Respondent.objects.get(id=respondent_id)
+        r.last_update = datetime.now()
+        r.level = 2
+        r.save()
+    except:
+        return redirect('/enroll/')
+
     SHUFFLED_QUESTIONS = QUESTIONS
     random.shuffle(SHUFFLED_QUESTIONS)
     color = request.session.get("pre_color", "blue")
     context = {"questions": SHUFFLED_QUESTIONS, "color": color}
-    if request.method == "POST":
-        for key in request.POST:
-            respondent_id = request.session.get("respondent")
-            try:
-                r = Respondent.objects.get(id=respondent_id)
-                r.last_update = datetime.now()
-                r.level = 2
-                r.save()
-            except:
-                return redirect('/enroll/')
 
+    if request.method == "POST":
+        if len(request.POST) < 20:
+            data = []
+            for q in SHUFFLED_QUESTIONS:
+                data.append({'question': q, 'answer': request.POST.get(q, None)})
+            context['data'] = data
+            context['error'] = "Please answer all the questions"
+            return render(request, 'pre.html', context)
+
+        for key in request.POST:
             answer = request.POST[key][0]
             if key in QUESTIONS:
                 p = Panas.objects.filter(respondent_id = respondent_id, pre_post="pre", question=key)
@@ -105,7 +124,7 @@ def treatment(request):
     try:
         r = Respondent.objects.get(id = respondent)
         r.last_update = datetime.now()
-        r.level = 3
+        r.level = 4
         r.time_in = datetime.now()
         r.save()
     except:
@@ -118,11 +137,11 @@ def control(request):
     try:
         r = Respondent.objects.get(id=respondent)
         r.last_update = datetime.now()
-        r.level = 4
-        r.time_in = datetime.now()
+        r.level = 3
         r.save()
     except:
         return redirect('/enroll/')
+
     group = request.session.get("group")
     if group == "ROXO" or group == "RXO":
         context['next'] = "/treat/"
@@ -130,7 +149,26 @@ def control(request):
         context['next'] = "/post/"
     return render(request, 'control.html', context)
 
-def final(request):
+def number_check(request):
+    context = {}
+    respondent = request.session.get("respondent")
+    try:
+        r = Respondent.objects.get(id=respondent)
+        r.last_update = datetime.now()
+        r.level = 5
+        r.save()
+    except:
+        return redirect('/enroll/')
+
+    if request.method == "POST":
+        number = request.POST.get("number", None)
+        r.number = number
+        r.save()
+        return redirect('/post/')
+
+    return render(request, 'number_check.html', context)
+
+def posttreatment(request):
     try:
         respondent = request.session.get("respondent")
         r = Respondent.objects.get(id=respondent)
@@ -140,57 +178,52 @@ def final(request):
         r.save()
     except:
         return redirect('/enroll/')
-    return render(request, 'final.html')
 
-def posttreatment(request):
     SHUFFLED_QUESTIONS = QUESTIONS
     random.shuffle(SHUFFLED_QUESTIONS)
     color = request.session.get("post_color", "purple")
-    group = request.session.get("group", "RO")
     context = {"questions": SHUFFLED_QUESTIONS, "color": color}
-    if group in ["ROXO", "RXO"]:
-        context['number'] = True
-    else:
-        context['number'] = False
-    if request.method == "POST":
-        try:
-            respondent = request.session.get("respondent")
-            r = Respondent.objects.get(id=respondent)
-            r.last_update = datetime.now()
-            r.level = 5
-            r.save()
 
-            respondent_id = request.session.get("respondent")
+    if request.method == "POST":
+            if len(request.POST) < 20:
+                data = []
+                for q in SHUFFLED_QUESTIONS:
+                    data.append({'question': q, 'answer': request.POST.get(q, None)})
+                context['data'] = data
+                context['error'] = "Please answer all the questions"
+                return render(request, 'post.html', context)
+
+
             for key in request.POST:
                 answer = request.POST[key][0]
-                if key == "number":
-                    r.number = int(answer)
-                    r.save()
                 if key in QUESTIONS:
-                    p = Panas.objects.filter(respondent_id=respondent_id, pre_post="post", question=key)
+                    p = Panas.objects.filter(respondent_id=respondent, pre_post="post", question=key)
                     if p:
                         p[0].answer = answer
                         p[0].save()
                     else:
-                        Panas.objects.create(respondent_id=respondent_id, pre_post="post", question=key,
-                                             answer=answer).save()
-        except:
-            return redirect('/enroll/')
-
-        return redirect('/final/')
+                        Panas.objects.create(respondent_id=respondent, pre_post="post", question=key,
+                                                 answer=answer).save()
+            return redirect('/final/')
     else:
         return render(request, 'post.html', context)
 
-def randomize(age, gender, location):
-    groups = ["ROXO", "RXO", "ROO", "RO"]
-    i = random.randint(0,3)
-    return groups[i]
+def final(request):
+    try:
+        respondent = request.session.get("respondent")
+        r = Respondent.objects.get(id=respondent)
+    except:
+        return redirect('/enroll/')
 
-def randomize_color():
-    l = [0,1]
-    random.shuffle(l)
-    return (COLORS[l[0]], COLORS[l[1]] )
+    r.last_update = datetime.now()
+    r.level = 7
+    r.save()
+    del request.session['respondent']
+    del request.session['group']
+    del request.session['pre_color']
+    del request.session['post_color']
 
+    return render(request, 'final.html')
 
 
 def download(request):

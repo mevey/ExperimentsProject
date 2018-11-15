@@ -13,7 +13,6 @@ class Respondent(models.Model):
     location = models.CharField(max_length=200, default=None)
     pre_color = models.CharField(max_length=200, default=None)
     post_color = models.CharField(max_length=200, default=None)
-    country = models.CharField(max_length=200)
     gender = models.CharField(max_length=200)
     number = models.IntegerField(default=0)
     level = models.IntegerField(default=0)
@@ -23,7 +22,7 @@ class Respondent(models.Model):
     last_update = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
-        return self.email + " (" + self.group + ")"
+        return str(self.id) + " (" + self.group + ")"
 
 
 class Panas(models.Model):
