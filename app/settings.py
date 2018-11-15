@@ -29,6 +29,7 @@ ALLOWED_HOSTS = [
     "mevey.co.ke",
     "info.mevey.co.ke",
     "mproject.mevey.co.ke",
+    "m-project.mevey.co.ke",
     "127.0.0.1"
 ]
 
