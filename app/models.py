@@ -6,7 +6,6 @@ from django.db import models
 
 
 class Respondent(models.Model):
-    email = models.CharField(max_length=200, null=True)
     group = models.CharField(max_length=200)
     age = models.IntegerField(default=0)
     education = models.CharField(max_length=200, default=None)

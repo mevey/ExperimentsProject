@@ -54,7 +54,7 @@ def enrollment(request):
             request.session['post_color'] = post_color
 
             results = randomize(age, gender, location)
-            r = Respondent.objects.create(email = None, gender =gender, age=age, location=location, education=education,
+            r = Respondent.objects.create(gender =gender, age=age, location=location, education=education,
                                           enrollment_date=datetime.now(), last_update=datetime.now(), group=results,
                                           level=1, post_color=post_color, pre_color=pre_color,
                                           )
