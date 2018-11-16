@@ -112,6 +112,7 @@ html {
     color:darkgreen;
     font-weight:bold;
     text-align:center;
+    width: 80px !important;
 }
 .missing-nums input:hover {
     border:none;
