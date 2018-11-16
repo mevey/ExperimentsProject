@@ -15,7 +15,7 @@ class Respondent(models.Model):
     gender = models.CharField(max_length=200)
     number = models.IntegerField(default=0)
     level = models.IntegerField(default=0)
-    enrollment_date = models.DateTimeField()
+    enrollment_date = models.DateTimeField(null=True)
     time_in = models.DateTimeField(null=True)
     time_out = models.DateTimeField(null=True)
     last_update = models.DateTimeField(auto_now_add=True, blank=True)

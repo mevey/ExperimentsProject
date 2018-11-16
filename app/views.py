@@ -246,10 +246,11 @@ def download(request):
 
     respondents = Respondent.objects.filter()
     for respondent in respondents:
-        if respondent.time_out:
+        try:
             t = (respondent.time_out - respondent.time_in).total_seconds()
-        else:
+        except:
             t = 0
+
         row = [respondent.id, respondent.age, respondent.gender, respondent.location, respondent.group, respondent.enrollment_date, respondent.last_update, respondent.level, respondent.number, t]
         panas_results = Panas.objects.filter(respondent = respondent)
         pre_neg_sum, pre_pos_sum, post_neg_sum, post_pos_sum = 0, 0, 0, 0

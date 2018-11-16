@@ -100,7 +100,20 @@ html {
 }
 
 .missing-nums span{
-    width:40px;
+    width:80px;
     margin:10px 10px;
-    font-size:28px;
+    font-size:38px;
  }
+.missing-nums input {
+    width: 80px;
+    margin:10px;
+    border:none;
+    border-bottom:1px solid #888;
+    color:darkgreen;
+    font-weight:bold;
+    text-align:center;
+    width: 80px !important;
+}
+.missing-nums input:hover {
+    border:none;
+}
