@@ -2,11 +2,10 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'sudoku.css' %}">
-  <script type="text/javascript" src="{% static 'main.js' %}"></script>
-    <title>M-Project</title>
+  <meta charset="UTF-8">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+  <title>M-Project</title>
   <style>
     table {
       border-radius: 5px;
@@ -25,276 +24,66 @@
 
       <!-- Page Heading -->
       <h1 class="text-center">Fill in the missing numbers then click NEXT </h1>
-
+      <hr>
+      <br clear="all">
       <!-- Project One -->
       <div class="row">
         <div class="col-md-12 text-center">
-          <p>This is a game of Sudoku. Every row and every column should have the numbers 1 to 9 without any duplicates.</p>
-          <form class="text-center">
-              <table id="sudoku" class="center">
-        <tr>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-          <td>
-            <input type="number" min="1" step="1" max="9"/>
-          </td>
-        </tr>
-      </table>
-          </form>
+          <div class="missing-nums">
+             <span>11</span>
+             <span>12</span>
+             <span>13</span>
+             <span><input /></span>
+            <span>15</span>
+            <span>16</span>
+            <span>17</span>
+            <span>18</span>
+          </div>
+          <hr>
+          <div class="missing-nums">
+             <span>114</span>
+             <span>116</span>
+             <span><input /></span>
+             <span><input /></span>
+            <span>122</span>
+            <span>124</span>
+            <span>126</span>
+            <span><input /></span>
+          </div>
+          <hr>
+          <div class="missing-nums">
+             <span><input /></span>
+             <span>1</span>
+             <span>0</span>
+             <span><input /></span>
+            <span>0</span>
+            <span>1</span>
+            <span>0</span>
+            <span>1</span>
+          </div>
+          <hr>
+          <div class="missing-nums">
+             <span>35</span>
+             <span>30</span>
+             <span><input/></span>
+             <span><input /></span>
+            <span>15</span>
+            <span>10</span>
+            <span>5</span>
+            <span>0</span>
+          </div>
+          <hr>
+          <div class="missing-nums">
+             <span>13</span>
+             <span>16</span>
+             <span>19</span>
+             <span><input /></span>
+            <span>25</span>
+            <span>28</span>
+            <span><input/></span>
+            <span>34</span>
+          </div>
+
           <br clear="all">
           <br clear="all">
           <a href="{{next}}"><button class="btn btn-primary" style="width:200px;">NEXT</button></a>

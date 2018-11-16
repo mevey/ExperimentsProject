@@ -99,3 +99,20 @@ html {
   color: #fff;
 }
 
+.missing-nums span{
+    width:80px;
+    margin:10px 10px;
+    font-size:38px;
+ }
+.missing-nums input {
+    width: 80px;
+    margin:10px;
+    border:none;
+    border-bottom:1px solid #888;
+    color:darkgreen;
+    font-weight:bold;
+    text-align:center;
+}
+.missing-nums input:hover {
+    border:none;
+}

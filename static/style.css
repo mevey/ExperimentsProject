@@ -99,3 +99,8 @@ html {
   color: #fff;
 }
 
+.missing-nums span{
+    width:40px;
+    margin:10px 10px;
+    font-size:28px;
+ }
