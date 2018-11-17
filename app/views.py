@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from app.models import *
 from datetime import datetime
 import random, csv
+import numpy as np
 
 QUESTIONS = [
     "Interested",
@@ -53,7 +54,7 @@ def enrollment(request):
             request.session['pre_color'] = pre_color
             request.session['post_color'] = post_color
 
-            results = randomize(age, gender, location)
+            results = randomize()
             r = Respondent.objects.create(gender =gender, age=age, location=location, education=education,
                                           enrollment_date=datetime.now(), last_update=datetime.now(), group=results,
                                           level=1, post_color=post_color, pre_color=pre_color,
@@ -70,10 +71,11 @@ def enrollment(request):
     else:
         return render(request, 'enrollment.html', context)
 
-def randomize(age, gender, location):
-    groups = ["ROXO", "RXO", "ROO", "RO"]
-    i = random.randint(0,3)
-    return groups[i]
+def randomize():
+    groups = [["ROXO", "ROO"], ["RXO", "RO"]]
+    g = np.random.binomial(n=1, p=0.3)
+    i = np.random.binomial(n=1, p=0.5)
+    return groups[g][i]
 
 def randomize_color():
     l = [0,1]
