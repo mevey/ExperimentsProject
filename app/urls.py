@@ -14,5 +14,6 @@ urlpatterns = [
     path('control/', views.control),
     path('post/', views.posttreatment),
     path('final/', views.final),
+    path('dash/', views.dash),
     path('download/', views.download),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

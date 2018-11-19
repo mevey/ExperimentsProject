@@ -231,6 +231,59 @@ def final(request):
     return render(request, 'final.html')
 
 
+
+def dash(request):
+    context = {}
+    res = Respondent.objects.filter()
+    mt, ft, mo, fo, ac, at, roxo, rxo, roo, ro, us, ke, ind, atd, ac_complete, at_complete = 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+    for r in res:
+        if r.gender == "male" and r.group in ["ROXO", "RXO"]:
+            mt += 1
+            at += 1
+            if r.number == 7: atd += 1
+            if r.level == 7: at_complete += 1
+        if r.gender == "female" and r.group in ["ROXO", "RXO"]:
+            ft += 1
+            at += 1
+            if r.number == 7: atd += 1
+            if r.level == 7: at_complete += 1
+        if r.gender == "male" and r.group in ["ROO", "RO"]:
+            mo += 1
+            ac += 1
+            if r.level == 7: ac_complete += 1
+        if r.gender == "female" and r.group in ["ROO", "RO"]:
+            fo += 1
+            ac += 1
+        if r.group == "ROXO": roxo += 1
+        if r.group == "RXO": rxo += 1
+        if r.group == "ROO": roo += 1
+        if r.group == "RO": ro += 1
+        if r.location == "Kenya": ke += 1
+        if r.location == "United States": us += 1
+        if r.location == "India": ind += 1
+
+    context['t'] = res.count()
+    context['mo'] = mo
+    context['mt'] = mt
+    context['fo'] = fo
+    context['ft'] = ft
+    context['m'] = mo + mt
+    context['f'] = fo + ft
+    context['ac'] = at
+    context['at'] = at
+    context['roxo'] = roxo
+    context['rxo'] = rxo
+    context['roo'] = roo
+    context['ro'] = ro
+    context['ke'] = ke
+    context['us'] = us
+    context['ind'] = ind
+    context['atd'] = atd # compliance
+    context['at_complete'] = at_complete
+    context['ac_complete'] = ac_complete
+
+    return render(request, 'dash.html', context)
+
 def download(request):
     positive_affect =  [x-1 for x in [1, 3, 5, 9, 10, 12, 14, 16, 17, 19]]
 

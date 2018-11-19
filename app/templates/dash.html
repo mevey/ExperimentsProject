@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+  <title>M-Project</title>
+  <style>
+    table {
+      border-radius: 5px;
+      width: 50%;
+      margin: 0px auto;
+      float: none;
+    }
+
+  </style>
+
+  </head>
+
+  <body>
+
+    <!-- Page Content -->
+    <div class="container" style="margin-top:70px;">
+
+      <!-- Page Heading -->
+      <h1 class="text-center">M-Project Dashboard</h1>
+      <p class="text-center">Refresh the page for updates</p>
+      <hr>
+      <br clear="all">
+      <!-- Project One -->
+      <div class="row">
+        <div class="col-md-4">
+            <h1>{{t}}</h1>
+            Total respondents
+        </div>
+        <div class="col-md-4 blue">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>{{at}}</h1>
+                    Total respondents assigned treatment
+                </div>
+                <div class="col-md-6">
+                    <h1>{{atd}}</h1>
+                    Respondents who listen to the podcast to the end
+                    <!--<hr>-->
+                    <!--<h1>{{at_complete}}</h1>-->
+                    <!--Total respondents assigned treatment who finish the entire survey-->
+                </div>
+            </div>
+        </div>
+         <div class="col-md-4 purple">
+             <div class="row">
+                <div class="col-md-6">
+                    <h1>{{ac}}</h1>
+                    Total respondents assigned to control
+                </div>
+                <div class="col-md-6">
+                    <h1>{{ac_complete}}</h1>
+                    Respondents in control who answer all questions
+                </div>
+            </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-2 blue">
+            <h1>{{roxo}}</h1>
+            ROXO
+        </div>
+         <div class="col-md-2 blue">
+            <h1>{{rxo}}</h1>
+            RXO
+        </div>
+         <div class="col-md-2 purple">
+            <h1>{{roo}}</h1>
+            ROO
+        </div>
+         <div class="col-md-2 purple">
+            <h1>{{ro}}</h1>
+            RO
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-2">
+            <h1>{{m}}</h1>
+            Total male
+        </div>
+          <div class="col-md-2">
+            <h1>{{f}}</h1>
+            Total female
+        </div>
+        <div class="col-md-2">
+            <h1>{{mt}}</h1>
+            Total males assigned treatment
+        </div>
+
+         <div class="col-md-2">
+            <h1>{{ft}}</h1>
+            Total females assigned treatment
+        </div>
+           <div class="col-md-2">
+            <h1>{{mo}}</h1>
+            Total males assigned control
+        </div>
+         <div class="col-md-2">
+            <h1>{{fo}}</h1>
+            Total females assigned control
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-4">
+            <h1>{{ind}}</h1>
+            Total respondents from India
+            <img src="{% static 'india.png' %}"/>
+        </div>
+        <div class="col-md-4">
+            <h1>{{ke}}</h1>
+            Total respondents from Kenya
+            <img src="{% static 'kenya.png' %}"/>
+        </div>
+        <div class="col-md-4">
+            <h1>{{us}}</h1>
+            Total respondents from USA
+            <img src="{% static 'usa.png' %}"/>
+        </div>
+      </div>
+      <hr>
+      <!-- /.row -->
+    </div>
+    <!-- /.container -->
+  </body>
+
+</html>
