@@ -254,6 +254,7 @@ def dash(request):
         if r.gender == "female" and r.group in ["ROO", "RO"]:
             fo += 1
             ac += 1
+            if r.level == 7: ac_complete += 1
         if r.group == "ROXO": roxo += 1
         if r.group == "RXO": rxo += 1
         if r.group == "ROO": roo += 1
