@@ -241,7 +241,7 @@ def dash(request):
             mt += 1
             at += 1
             if r.number == 7: atd += 1
-            if r.number == 7 and r.level == 7: at_complete += 1
+            if r.level == 7: at_complete += 1
         if r.gender == "female" and r.group in ["ROXO", "RXO"]:
             ft += 1
             at += 1
