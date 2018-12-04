@@ -288,7 +288,7 @@ def dash(request):
 def download(request):
     positive_affect =  [x-1 for x in [1, 3, 5, 9, 10, 12, 14, 16, 17, 19]]
 
-    header = ["respondent_id", "age", "gender", "location", "group", "enrolled", "last_update", "level", "number_check", "time_spent_in_treatment_or_control", "pre_positive_affect", "pre_negative_affect", "post_positive_affect", "post_negative_affect"]
+    header = ["respondent_id", "age", "gender", "location","education", "group", "enrolled", "last_update", "level", "number_check", "time_spent_in_treatment_or_control", "pre_positive_affect", "pre_negative_affect", "post_positive_affect", "post_negative_affect"]
     individual_questions = []
     for question in QUESTIONS:
         individual_questions.extend(["pre_" + question.lower(), "post_" + question.lower()])
@@ -307,7 +307,7 @@ def download(request):
         except:
             t = 0
 
-        row = [respondent.id, respondent.age, respondent.gender, respondent.location, respondent.group, respondent.enrollment_date, respondent.last_update, respondent.level, respondent.number, t]
+        row = [respondent.id, respondent.age, respondent.gender, respondent.location, respondent.education, respondent.group, respondent.enrollment_date, respondent.last_update, respondent.level, respondent.number, t]
         panas_results = Panas.objects.filter(respondent = respondent)
         pre_neg_sum, pre_pos_sum, post_neg_sum, post_pos_sum = 0, 0, 0, 0
         individual_answers = [0] * len(individual_questions)
